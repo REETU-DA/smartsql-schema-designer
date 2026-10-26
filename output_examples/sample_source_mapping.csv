@@ -1,0 +1,14 @@
+﻿source_file,source_sheet,source_dataset_id,source_column,target_table,target_column,sql_type,included
+courses.csv,,courses_csv,Course_ID,courses,course_id,TEXT,True
+courses.csv,,courses_csv,Course_Name,courses,course_name,TEXT,True
+courses.csv,,courses_csv,Fee,courses,fee,"NUMERIC(6,2)",True
+enrollments.csv,,enrollments_csv,Enrollment_ID,enrollments,enrollment_id,TEXT,True
+enrollments.csv,,enrollments_csv,Student_ID,enrollments,student_id,TEXT,True
+enrollments.csv,,enrollments_csv,Course_ID,enrollments,course_id,TEXT,True
+enrollments.csv,,enrollments_csv,Enrolled_On,enrollments,enrolled_on,DATE,True
+enrollments.csv,,enrollments_csv,Status,enrollments,status,TEXT,True
+students.csv,,students_csv,Student_ID,students,student_id,TEXT,True
+students.csv,,students_csv,Student_Name,students,student_name,TEXT,True
+students.csv,,students_csv,Email,students,email,TEXT,True
+students.csv,,students_csv,City,students,city,TEXT,True
+students.csv,,students_csv,Admission_Date,students,admission_date,DATE,True

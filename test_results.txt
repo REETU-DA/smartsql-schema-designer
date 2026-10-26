@@ -1,0 +1,27 @@
+SmartSQL Schema Designer — build verification
+Date: 2026-10-26
+
+Python compile check:
+  python -m compileall -q .
+  PASS
+
+Automated tests:
+  python -m pytest -q
+  43 passed, 2 skipped
+  - Legacy .xls test skipped because xlwt and xlrd were not installed in the build environment.
+  - Parquet test skipped because pyarrow was not installed in the build environment.
+  Install requirements.txt to install these test/runtime dependencies and execute those tests.
+
+Core sample-workflow smoke check:
+  PASS — parsed 3 synthetic CSV datasets (13 source rows), built 3 tables,
+  detected 2 high-confidence FK candidates with 100% row match coverage,
+  approved those candidates for the generated sample, and found 0 validation errors.
+  Generated SQL contains 3 CREATE TABLE statements and 2 FOREIGN KEY constraints.
+  Download report bundle generated and its JSON/CSV artifacts inspected.
+
+Not verified in this environment:
+  - Streamlit UI runtime launch: Streamlit was not installed; package installation
+    could not complete because network/DNS access was unavailable.
+  - Live execution against a PostgreSQL server: no PostgreSQL server/client was
+    available or contacted. SQL is covered by generation-level automated tests,
+    not a live PostgreSQL integration test.

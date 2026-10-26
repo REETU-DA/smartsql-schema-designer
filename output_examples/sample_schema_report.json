@@ -1,0 +1,885 @@
+{
+  "application": "SmartSQL Schema Designer",
+  "version": "0.1.0",
+  "target_dialect": "PostgreSQL",
+  "target_schema": "public",
+  "design_mode": "Direct Import Schema",
+  "source_processing": "Local/in-memory analysis; schema generation does not load data or connect to a database.",
+  "tables": [
+    {
+      "id": "courses_csv",
+      "name": "courses",
+      "source_file": "courses.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "row_count": 3,
+      "columns": [
+        {
+          "source_name": "Course_ID",
+          "name": "course_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": true,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Column name indicates an identifier/contact/code field; string storage preserves formatting and leading zeros.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 3
+          }
+        },
+        {
+          "source_name": "Course_Name",
+          "name": "course_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Values are not consistently numeric, Boolean, date, time, or UUID; TEXT preserves their original content.",
+            "confidence": "Medium",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 3
+          }
+        },
+        {
+          "source_name": "Fee",
+          "name": "fee",
+          "sql_type": "NUMERIC(6,2)",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "NUMERIC(6,2)",
+            "reason": "Every value is numeric; NUMERIC avoids binary floating-point rounding in stored decimal values.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 3
+          }
+        }
+      ],
+      "key_candidates": [
+        {
+          "columns": [
+            "Course_ID"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 3,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.18,
+          "evidence": "3 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Course_Name"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 3,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "3 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Fee"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 3,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "3 distinct non-missing values, 0 missing, 0 repeated values."
+        }
+      ],
+      "recommended_pk": {
+        "columns": [
+          "Course_ID"
+        ],
+        "kind": "single-column",
+        "unique_pct": 100.0,
+        "distinct_count": 3,
+        "missing_count": 0,
+        "duplicate_count": 0,
+        "valid_primary_key": true,
+        "score": 1.18,
+        "evidence": "3 distinct non-missing values, 0 missing, 0 repeated values."
+      }
+    },
+    {
+      "id": "enrollments_csv",
+      "name": "enrollments",
+      "source_file": "enrollments.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "row_count": 6,
+      "columns": [
+        {
+          "source_name": "Enrollment_ID",
+          "name": "enrollment_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": true,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Column name indicates an identifier/contact/code field; string storage preserves formatting and leading zeros.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 6
+          }
+        },
+        {
+          "source_name": "Student_ID",
+          "name": "student_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Column name indicates an identifier/contact/code field; string storage preserves formatting and leading zeros.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 6
+          }
+        },
+        {
+          "source_name": "Course_ID",
+          "name": "course_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Column name indicates an identifier/contact/code field; string storage preserves formatting and leading zeros.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 6
+          }
+        },
+        {
+          "source_name": "Enrolled_On",
+          "name": "enrolled_on",
+          "sql_type": "DATE",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "DATE",
+            "reason": "All values are valid ISO calendar dates (YYYY-MM-DD).",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 6
+          }
+        },
+        {
+          "source_name": "Status",
+          "name": "status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Values are not consistently numeric, Boolean, date, time, or UUID; TEXT preserves their original content.",
+            "confidence": "Medium",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 6
+          }
+        }
+      ],
+      "key_candidates": [
+        {
+          "columns": [
+            "Enrollment_ID"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 6,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.18,
+          "evidence": "6 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Student_ID",
+            "Course_ID"
+          ],
+          "kind": "composite",
+          "unique_pct": 100.0,
+          "distinct_count": 6,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.18,
+          "evidence": "The combination (Student_ID, Course_ID) is unique and neither column contains missing values. Review business meaning before approval."
+        },
+        {
+          "columns": [
+            "Enrolled_On"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 6,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "6 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Student_ID"
+          ],
+          "kind": "single-column",
+          "unique_pct": 66.67,
+          "distinct_count": 4,
+          "missing_count": 0,
+          "duplicate_count": 2,
+          "valid_primary_key": false,
+          "score": 0.847,
+          "evidence": "4 distinct non-missing values, 0 missing, 2 repeated values."
+        },
+        {
+          "columns": [
+            "Course_ID"
+          ],
+          "kind": "single-column",
+          "unique_pct": 50.0,
+          "distinct_count": 3,
+          "missing_count": 0,
+          "duplicate_count": 3,
+          "valid_primary_key": false,
+          "score": 0.68,
+          "evidence": "3 distinct non-missing values, 0 missing, 3 repeated values."
+        },
+        {
+          "columns": [
+            "Status"
+          ],
+          "kind": "single-column",
+          "unique_pct": 33.33,
+          "distinct_count": 2,
+          "missing_count": 0,
+          "duplicate_count": 4,
+          "valid_primary_key": false,
+          "score": 0.333,
+          "evidence": "2 distinct non-missing values, 0 missing, 4 repeated values."
+        }
+      ],
+      "recommended_pk": {
+        "columns": [
+          "Enrollment_ID"
+        ],
+        "kind": "single-column",
+        "unique_pct": 100.0,
+        "distinct_count": 6,
+        "missing_count": 0,
+        "duplicate_count": 0,
+        "valid_primary_key": true,
+        "score": 1.18,
+        "evidence": "6 distinct non-missing values, 0 missing, 0 repeated values."
+      }
+    },
+    {
+      "id": "students_csv",
+      "name": "students",
+      "source_file": "students.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "row_count": 4,
+      "columns": [
+        {
+          "source_name": "Student_ID",
+          "name": "student_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": true,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Column name indicates an identifier/contact/code field; string storage preserves formatting and leading zeros.",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 4
+          }
+        },
+        {
+          "source_name": "Student_Name",
+          "name": "student_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Values are not consistently numeric, Boolean, date, time, or UUID; TEXT preserves their original content.",
+            "confidence": "Medium",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 4
+          }
+        },
+        {
+          "source_name": "Email",
+          "name": "email",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Values are not consistently numeric, Boolean, date, time, or UUID; TEXT preserves their original content.",
+            "confidence": "Medium",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 4
+          }
+        },
+        {
+          "source_name": "City",
+          "name": "city",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "TEXT",
+            "reason": "Values are not consistently numeric, Boolean, date, time, or UUID; TEXT preserves their original content.",
+            "confidence": "Medium",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 4
+          }
+        },
+        {
+          "source_name": "Admission_Date",
+          "name": "admission_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false,
+          "included": true,
+          "inference": {
+            "sql_type": "DATE",
+            "reason": "All values are valid ISO calendar dates (YYYY-MM-DD).",
+            "confidence": "High",
+            "exceptions": [],
+            "ambiguous_date": false,
+            "nullable_recommended": true,
+            "observed_non_null": 4
+          }
+        }
+      ],
+      "key_candidates": [
+        {
+          "columns": [
+            "Student_ID"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 4,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.18,
+          "evidence": "4 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Admission_Date"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 4,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "4 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Email"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 4,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "4 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "Student_Name"
+          ],
+          "kind": "single-column",
+          "unique_pct": 100.0,
+          "distinct_count": 4,
+          "missing_count": 0,
+          "duplicate_count": 0,
+          "valid_primary_key": true,
+          "score": 1.0,
+          "evidence": "4 distinct non-missing values, 0 missing, 0 repeated values."
+        },
+        {
+          "columns": [
+            "City"
+          ],
+          "kind": "single-column",
+          "unique_pct": 75.0,
+          "distinct_count": 3,
+          "missing_count": 0,
+          "duplicate_count": 1,
+          "valid_primary_key": false,
+          "score": 0.75,
+          "evidence": "3 distinct non-missing values, 0 missing, 1 repeated values."
+        }
+      ],
+      "recommended_pk": {
+        "columns": [
+          "Student_ID"
+        ],
+        "kind": "single-column",
+        "unique_pct": 100.0,
+        "distinct_count": 4,
+        "missing_count": 0,
+        "duplicate_count": 0,
+        "valid_primary_key": true,
+        "score": 1.18,
+        "evidence": "4 distinct non-missing values, 0 missing, 0 repeated values."
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "enrollments_csv::Student_ID->students_csv::Student_ID",
+      "child_table_id": "enrollments_csv",
+      "child_table": "enrollments",
+      "child_column_source": "Student_ID",
+      "child_column": "student_id",
+      "parent_table_id": "students_csv",
+      "parent_table": "students",
+      "parent_column_source": "Student_ID",
+      "parent_column": "student_id",
+      "name_similarity": 1.0,
+      "distinct_value_overlap_pct": 100.0,
+      "matching_non_null_rows_pct": 100.0,
+      "child_non_null_rows": 6,
+      "matched_rows": 6,
+      "unmatched_row_count": 0,
+      "unmatched_values": [],
+      "parent_key_unique": true,
+      "parent_key_missing_count": 0,
+      "relationship_type": "one-to-many",
+      "confidence": "High",
+      "score": 1.0,
+      "valid_for_fk": true,
+      "approved": true,
+      "evidence": "Child and parent column names match after normalisation. 4/4 distinct child values match (100.0%); 6/6 non-missing child rows match (100.0%). Parent values are unique and non-missing for the candidate key.",
+      "warning": ""
+    },
+    {
+      "id": "enrollments_csv::Course_ID->courses_csv::Course_ID",
+      "child_table_id": "enrollments_csv",
+      "child_table": "enrollments",
+      "child_column_source": "Course_ID",
+      "child_column": "course_id",
+      "parent_table_id": "courses_csv",
+      "parent_table": "courses",
+      "parent_column_source": "Course_ID",
+      "parent_column": "course_id",
+      "name_similarity": 1.0,
+      "distinct_value_overlap_pct": 100.0,
+      "matching_non_null_rows_pct": 100.0,
+      "child_non_null_rows": 6,
+      "matched_rows": 6,
+      "unmatched_row_count": 0,
+      "unmatched_values": [],
+      "parent_key_unique": true,
+      "parent_key_missing_count": 0,
+      "relationship_type": "one-to-many",
+      "confidence": "High",
+      "score": 1.0,
+      "valid_for_fk": true,
+      "approved": true,
+      "evidence": "Child and parent column names match after normalisation. 3/3 distinct child values match (100.0%); 6/6 non-missing child rows match (100.0%). Parent values are unique and non-missing for the candidate key.",
+      "warning": ""
+    }
+  ],
+  "profiles": [
+    {
+      "dataset_id": "courses_csv",
+      "source_file": "courses.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "size_bytes": 125,
+      "row_count": 3,
+      "column_count": 3,
+      "duplicate_row_count": 0,
+      "duplicate_row_source_numbers": [],
+      "columns": [
+        {
+          "column": "Course_ID",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 3,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "CR001",
+            "CR002",
+            "CR003"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Course_Name",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 3,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "SQL Foundations",
+            "Power BI Essentials",
+            "Python for Analytics"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Fee",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 3,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "4999.00",
+            "5499.00",
+            "5999.00"
+          ],
+          "min": 4999.0,
+          "max": 5999.0,
+          "outlier_count": 0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "dataset_id": "enrollments_csv",
+      "source_file": "enrollments.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "size_bytes": 276,
+      "row_count": 6,
+      "column_count": 5,
+      "duplicate_row_count": 0,
+      "duplicate_row_source_numbers": [],
+      "columns": [
+        {
+          "column": "Enrollment_ID",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 6,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "EN001",
+            "EN002",
+            "EN003",
+            "EN004",
+            "EN005"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Student_ID",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 4,
+          "duplicate_values": 2,
+          "constant": false,
+          "sample_values": [
+            "ST001",
+            "ST002",
+            "ST003",
+            "ST004"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Course_ID",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 3,
+          "duplicate_values": 3,
+          "constant": false,
+          "sample_values": [
+            "CR001",
+            "CR002",
+            "CR003"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Enrolled_On",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 6,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "2025-01-05",
+            "2025-01-07",
+            "2025-01-09",
+            "2025-01-12",
+            "2025-01-15"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Status",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 2,
+          "duplicate_values": 4,
+          "constant": false,
+          "sample_values": [
+            "Active",
+            "Completed"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "dataset_id": "students_csv",
+      "source_file": "students.csv",
+      "source_sheet": null,
+      "file_format": "CSV",
+      "size_bytes": 261,
+      "row_count": 4,
+      "column_count": 5,
+      "duplicate_row_count": 0,
+      "duplicate_row_source_numbers": [],
+      "columns": [
+        {
+          "column": "Student_ID",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 4,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "ST001",
+            "ST002",
+            "ST003",
+            "ST004"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Student_Name",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 4,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "Asha Mehta",
+            "Kabir Shah",
+            "Meera Rao",
+            "Dev Kapoor"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Email",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 4,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "asha@example.test",
+            "kabir@example.test",
+            "meera@example.test",
+            "dev@example.test"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "City",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 3,
+          "duplicate_values": 1,
+          "constant": false,
+          "sample_values": [
+            "Delhi",
+            "Gurugram",
+            "Noida"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        },
+        {
+          "column": "Admission_Date",
+          "missing_count": 0,
+          "missing_pct": 0.0,
+          "distinct_count": 4,
+          "duplicate_values": 0,
+          "constant": false,
+          "sample_values": [
+            "2024-07-12",
+            "2024-07-15",
+            "2024-07-18",
+            "2024-07-20"
+          ],
+          "min": null,
+          "max": null,
+          "outlier_count": 0
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "normalization_opportunities": [
+    {
+      "category": "Shared-domain candidate",
+      "source_file": "courses.csv · enrollments.csv",
+      "source_sheet": " · ",
+      "table": "courses / enrollments",
+      "column": "course_id / course_id",
+      "evidence": "Columns with the same normalised name share 100% of the smaller distinct-value set (3 overlapping distinct values).",
+      "suggestion": "Confirm that the attributes have the same meaning and lifecycle. A shared lookup or entity may help if independent attributes or controlled values exist; do not normalise on overlap alone.",
+      "confidence": "Medium"
+    },
+    {
+      "category": "Shared-domain candidate",
+      "source_file": "enrollments.csv · students.csv",
+      "source_sheet": " · ",
+      "table": "enrollments / students",
+      "column": "student_id / student_id",
+      "evidence": "Columns with the same normalised name share 100% of the smaller distinct-value set (4 overlapping distinct values).",
+      "suggestion": "Confirm that the attributes have the same meaning and lifecycle. A shared lookup or entity may help if independent attributes or controlled values exist; do not normalise on overlap alone.",
+      "confidence": "Medium"
+    }
+  ],
+  "import_plan": {
+    "creation_order": [
+      {
+        "table_id": "courses_csv",
+        "table": "courses"
+      },
+      {
+        "table_id": "students_csv",
+        "table": "students"
+      },
+      {
+        "table_id": "enrollments_csv",
+        "table": "enrollments"
+      }
+    ],
+    "data_load_order": [
+      {
+        "table_id": "courses_csv",
+        "table": "courses"
+      },
+      {
+        "table_id": "students_csv",
+        "table": "students"
+      },
+      {
+        "table_id": "enrollments_csv",
+        "table": "enrollments"
+      }
+    ],
+    "constraint_order": "Create every table first, then add approved foreign-key constraints with ALTER TABLE. This also supports cyclic references.",
+    "cycle_detected": false,
+    "cyclic_tables": [],
+    "approved_foreign_keys": 2
+  },
+  "validation_summary": {
+    "issue_count": 0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "limitations": [
+    "PostgreSQL DDL is the only fully implemented SQL dialect in this version.",
+    "Relational mode surfaces relationships and normalization clues but does not automatically decompose source datasets; source columns remain traceable.",
+    "Foreign-key suggestions are evidence-based candidates and must be explicitly approved in the interface."
+  ]
+}
